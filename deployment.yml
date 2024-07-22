@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tedx2020
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tedx2020
+  template:
+    metadata:
+      labels:
+        app: tedx2020
+    spec:
+      containers:
+      - name: tedx2020
+        image: swapnil2026/tedxapp2020:replaceImageTag
+        env:
+        - name: WORDPRESS_DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-host
+        - name: WORDPRESS_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-user
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-password
+        - name: WORDPRESS_DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-database
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tedx2020
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+  selector:
+    app: tedx2020
+
