@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: tedx2020
-        image: swapnil2026/tedxapp2020:replaceImageTag
+        image: swapnil2026/tedxapp2020:16
         env:
         - name: WORDPRESS_DB_HOST
           valueFrom:
