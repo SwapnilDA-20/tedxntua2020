@@ -1,5 +1,5 @@
 
-swapnil2026/tedxapp2020:18 (debian 12.6)
+swapnil2026/tedxapp2020:19 (debian 12.6)
 ========================================
 Total: 1045 (UNKNOWN: 7, LOW: 530, MEDIUM: 427, HIGH: 74, CRITICAL: 7)
 
