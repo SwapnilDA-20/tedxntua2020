@@ -14,7 +14,14 @@ spec:
     spec:
       containers:
       - name: tedx2020
-        image: swapnil2026/tedxapp2020:18
+        image: swapnil2026/tedxapp2020:latest
+        resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+            requests:
+              memory: "500Mi"
+              cpu: "500m"
         env:
         - name: WORDPRESS_DB_HOST
           valueFrom:
@@ -38,6 +45,13 @@ spec:
               key: mysql-database
         ports:
         - containerPort: 8000
+        volumeMounts:
+            - name: tedx-data
+              mountPath: /      #path inside container where efs will be mounted    
+      volumes:
+        - name: tedx-data
+          persistentVolumeClaim:
+              claimName: tedx-pvc  
 ---
 apiVersion: v1
 kind: Service
