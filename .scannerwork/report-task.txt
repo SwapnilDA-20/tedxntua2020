@@ -2,5 +2,5 @@ projectKey=Tedxapp2020
 serverUrl=https://sonarqube.swapnilahirekar.in
 serverVersion=10.6.0.92116
 dashboardUrl=https://sonarqube.swapnilahirekar.in/dashboard?id=Tedxapp2020
-ceTaskId=ccca2f12-5f7d-42cb-8ea0-cff218fe1ec7
-ceTaskUrl=https://sonarqube.swapnilahirekar.in/api/ce/task?id=ccca2f12-5f7d-42cb-8ea0-cff218fe1ec7
+ceTaskId=c50f2123-d1f8-4172-9f42-ef783c7e10b2
+ceTaskUrl=https://sonarqube.swapnilahirekar.in/api/ce/task?id=c50f2123-d1f8-4172-9f42-ef783c7e10b2
