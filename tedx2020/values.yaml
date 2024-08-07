@@ -1,0 +1,26 @@
+image:
+  repository: swapnil2026/tedxapp2020
+  tag: "22"
+
+resources:
+  limits:
+    memory: "2Gi"
+    cpu: "1000m"
+  requests:
+    memory: "500Mi"
+    cpu: "500m"
+
+ingress:
+  subnets: "subnet-0e0268589949da7e1,subnet-05ccc3e7350a5ac90"
+  certificateArn: "arn:aws:acm:ap-south-1:010438469264:certificate/31ccc747-270d-4b3e-9c88-b78a0e098f65"
+  host: "tedx2020.swapnilahirekar.in"
+
+secret:
+  mysqlUser: YWRtaW4=
+  mysqlPassword: RGF0YWJhc2UxMjM=
+  mysqlDatabase: dGVkeGRi
+  mysqlHost: aGFkaXlhLWRiLXBvYy0xLmNqdWsyNnl3MmN0OC5hcC1zb3V0aC0xLnJkcy5hbWF6b25hd3MuY29t 
+
+efs:
+  volumeHandle: fs-0c9e89bd602ca1148::fsap-0b3007c646686e562
+
