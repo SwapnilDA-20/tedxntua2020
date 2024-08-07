@@ -12,7 +12,7 @@ spec:
   storageClassName: tedx-sc
   csi:
     driver: efs.csi.aws.com
-    volumeHandle: fs-0c9e89bd602ca1148::fsap-09217c49accbeb0da  # Replace with your EFS File System ID
+    volumeHandle: fs-0c9e89bd602ca1148::fsap-0b3007c646686e562  # Replace with your EFS File System ID
 
 ---
 apiVersion: v1

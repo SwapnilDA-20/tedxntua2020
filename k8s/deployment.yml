@@ -47,7 +47,7 @@ spec:
         - containerPort: 8000
         volumeMounts:
             - name: tedx-data
-              mountPath: /      #path inside container where efs will be mounted    
+              mountPath: /app/tedxdata     #path inside container where efs will be mounted    
       volumes:
         - name: tedx-data
           persistentVolumeClaim:
