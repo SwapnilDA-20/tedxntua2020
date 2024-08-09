@@ -24,3 +24,6 @@ secret:
 efs:
   volumeHandle: fs-0c9e89bd602ca1148::fsap-0b3007c646686e562
 
+service:
+  port: 80
+
