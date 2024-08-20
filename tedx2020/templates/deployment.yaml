@@ -1,47 +1,47 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  name: {{ include "tedx2020.fullname" . }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ include "tedx2020.fullname" . }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ include "tedx2020.fullname" . }}
     spec:
       containers:
-      - name: {{ .Release.Name }}
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+      - name: {{ include "tedx2020.fullname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         resources:
           limits:
-            memory: {{ .Values.resources.limits.memory }}
-            cpu: {{ .Values.resources.limits.cpu }}
+            memory: "{{ .Values.resources.limits.memory }}"
+            cpu: "{{ .Values.resources.limits.cpu }}"
           requests:
-            memory: {{ .Values.resources.requests.memory }}
-            cpu: {{ .Values.resources.requests.cpu }}
+            memory: "{{ .Values.resources.requests.memory }}"
+            cpu: "{{ .Values.resources.requests.cpu }}"
         env:
         - name: WORDPRESS_DB_HOST
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ include "tedx2020.fullname" . }}-secret
               key: mysql-host
         - name: WORDPRESS_DB_USER
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ include "tedx2020.fullname" . }}-secret
               key: mysql-user
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ include "tedx2020.fullname" . }}-secret
               key: mysql-password
         - name: WORDPRESS_DB_NAME
           valueFrom:
             secretKeyRef:
-              name: mysql-secret
+              name: {{ include "tedx2020.fullname" . }}-secret
               key: mysql-database
         ports:
         - containerPort: 8000
@@ -51,5 +51,5 @@ spec:
       volumes:
       - name: tedx-data
         persistentVolumeClaim:
-          claimName: tedx-pvc
+          claimName: {{ include "tedx2020.fullname" . }}-pvc
 

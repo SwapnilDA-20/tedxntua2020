@@ -1,6 +1,10 @@
+# tedx-chart/values.yaml
+replicaCount: 1
+
 image:
   repository: swapnil2026/tedxapp2020
   tag: "22"
+  pullPolicy: IfNotPresent
 
 resources:
   limits:
@@ -10,20 +14,40 @@ resources:
     memory: "500Mi"
     cpu: "500m"
 
+env:
+  WORDPRESS_DB_HOST: 
+  WORDPRESS_DB_USER: 
+  WORDPRESS_DB_PASSWORD: 
+  WORDPRESS_DB_NAME: 
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8000
+
 ingress:
+  enabled: true
+  className: alb
+  loadBalancerName: master-test-eks-int-alb
+  scheme: internet-facing
+  targetType: ip
   subnets: "subnet-0e0268589949da7e1,subnet-05ccc3e7350a5ac90"
-  certificateArn: "arn:aws:acm:ap-south-1:010438469264:certificate/31ccc747-270d-4b3e-9c88-b78a0e098f65"
-  host: "tedx2020.swapnilahirekar.in"
+  certificateArn: arn:aws:acm:ap-south-1:010438469264:certificate/31ccc747-270d-4b3e-9c88-b78a0e098f65
+  sslPolicy: ELBSecurityPolicy-TLS13-1-2-2021-06
+  redirect:
+    enabled: true
+    port: 80
+
+persistence:
+  enabled: true
+  storageClassName: tedx-sc
+  accessModes:
+    - ReadWriteMany
+  size: 10Gi
 
 secret:
   mysqlUser: YWRtaW4=
   mysqlPassword: RGF0YWJhc2UxMjM=
   mysqlDatabase: dGVkeGRi
-  mysqlHost: aGFkaXlhLWRiLXBvYy0xLmNqdWsyNnl3MmN0OC5hcC1zb3V0aC0xLnJkcy5hbWF6b25hd3MuY29t 
-
-efs:
-  volumeHandle: fs-0c9e89bd602ca1148::fsap-0b3007c646686e562
-
-service:
-  port: 80
+  mysqlHost: aGFkaXlhLWRiLXBvYy0xLmNqdWsyNnl3MmN0OC5hcC1zb3V0aC0xLnJkcy5hbWF6b25hd3MuY29t
 
